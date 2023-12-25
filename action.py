@@ -18,7 +18,7 @@ def handle_buy_a_car(body: dict) -> dict:
         parameters = get_dialogflow_parameters(body, 'buy-session')
         print(parameters)
 
-        response = 'Here are some suggestions based on your inputs.'
+        response = 'Here are some suggestions based on your inputs. You can say option one.'
 
         output_contexts = []
         output_contexts.append(
@@ -142,6 +142,7 @@ def handle_user_provides_name(body: dict) -> dict:
     '''
 
     if flow == 'Buy':
+        parameters = get_dialogflow_parameters(body, 'buy-session')
         response = 'what is the best number to reach you?'
         output_contexts.append(
             {
@@ -151,6 +152,13 @@ def handle_user_provides_name(body: dict) -> dict:
         )
     else:
         parameters = get_dialogflow_parameters(body, 'sell-session')
+        response = 'what is the best number to reach you?'
+        output_contexts.append(
+            {
+                'name': f'{session}/contexts/await-mobile',
+                'lifespanCount': 1
+            }
+        )
 
     return format_dialogflow_response([response], output_contexts)
 
@@ -195,6 +203,54 @@ Do you want to schedule a call.'
             }
         )
     else:
+        print('I am here...')
         parameters = get_dialogflow_parameters(body, 'sell-session')
+        response = 'Thank you for these information, we will get in touch with you.'
+
+    return format_dialogflow_response([response], output_contexts)
+
+
+def handle_sell_a_car(body: dict) -> dict:
+    try:
+        all_required_params_present = body['queryResult']['allRequiredParamsPresent']
+    except:
+        all_required_params_present = False
+
+    session = body['session']
+
+    if all_required_params_present:
+        '''TODO
+        [ ] get all the available options format it
+        [ ] add them to the session parameters
+        '''
+        parameters = get_dialogflow_parameters(body, 'sell-session')
+        print(parameters)
+
+        response = 'I have got all the information regarding your car. \
+Would you like to provide your name and mobile number so that someone from \
+our team will get in touch with you for the further process?'
+
+        output_contexts = []
+        output_contexts.append(
+            {
+                'name': f'{session}/contexts/sell-session',
+                'lifespanCount': 50,
+                'parameters': {
+                    'next_yes_question': 'Please let me know your full name.',
+                    'next_yes_context': 'await-name',
+                    'next_no_question': 'Okay, is there anything I can help you with?',
+                    'next_no_context': ''
+                }
+            }
+        )
+        output_contexts.append(
+            {
+                'name': f'{session}/contexts/await-action',
+                'lifespanCount': 1
+            }
+        )
+    else:
+        output_contexts = []
+        response = body['queryResult']['fulfillmentText']
 
     return format_dialogflow_response([response], output_contexts)

@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2023-12-25T09:13:13.746Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.11 Chrome/114.0.5735.289 Electron/25.9.8 Safari/537.36" etag="Q6CVQLxHqcLqUmpOQIRD" version="22.1.11" type="device">
+<mxfile host="Electron" modified="2023-12-25T11:59:45.649Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.11 Chrome/114.0.5735.289 Electron/25.9.8 Safari/537.36" etag="t0J0ZnnlTyoqfaTot9xc" version="22.1.11" type="device">
   <diagram name="Page-1" id="B2Dq1C7qUuRjKt64bPmF">
     <mxGraphModel dx="1947" dy="1692" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -94,17 +94,11 @@
         <mxCell id="mabKHqCAzxkNhyvPXsgx-29" value="&lt;b&gt;&lt;font style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;User - No&lt;br&gt;Bot - Thank you for using our service, please let me know if you need anything.&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1080" y="760" width="200" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="eGzTbKaTsQihf1F2vK01-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="eGzTbKaTsQihf1F2vK01-2" target="eGzTbKaTsQihf1F2vK01-4" edge="1">
+        <mxCell id="BKslE8N0Xpy9U4q9M5Rh-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="eGzTbKaTsQihf1F2vK01-2" target="eGzTbKaTsQihf1F2vK01-6">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="eGzTbKaTsQihf1F2vK01-2" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;User - sell a car&lt;br&gt;Bot - I can help you sell your car. I will ask you some question about the car and you?&lt;br&gt;Do you want to provide the information?&lt;br&gt;&lt;/font&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="eGzTbKaTsQihf1F2vK01-2" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;User - sell a car&lt;br&gt;Bot - I can help you sell your car. I will ask you some question about the car and you?&lt;br&gt;&lt;/font&gt;&lt;/b&gt;&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Who is the manuacturer of the car that you want to sell?&lt;/font&gt;&lt;/b&gt;&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="120" y="280" width="200" height="120" as="geometry" />
-        </mxCell>
-        <mxCell id="eGzTbKaTsQihf1F2vK01-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="eGzTbKaTsQihf1F2vK01-4" target="eGzTbKaTsQihf1F2vK01-6" edge="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="eGzTbKaTsQihf1F2vK01-4" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;User - yes&lt;br&gt;Bot - What is the manuacturer of the car that you want to sell?&lt;/font&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="120" y="440" width="200" height="120" as="geometry" />
         </mxCell>
         <mxCell id="eGzTbKaTsQihf1F2vK01-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="eGzTbKaTsQihf1F2vK01-6" target="eGzTbKaTsQihf1F2vK01-8" edge="1">
           <mxGeometry relative="1" as="geometry" />
