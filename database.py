@@ -3,8 +3,11 @@ from datetime import datetime
 import tempfile
 import os
 
-DB_FILE_PATH = os.path.join(tempfile.gettempdir(),
-                            'car-sales-assistant', 'test.db')
+DB_DIR = os.path.join(tempfile.gettempdir(), 'car-sales-assistant')
+
+os.makedirs(DB_DIR, exist_ok=True)
+
+DB_FILE_PATH = os.path.join(DB_DIR, 'test.db')
 
 conn = sqlite3.connect(DB_FILE_PATH)
 
