@@ -22,6 +22,8 @@ def dialogflow():
     session_id = body['session']
     response_data = {}
 
+    print(f'{action} -> {query}')
+
     if action == 'buyACar':
         response_data = handle_buy_a_car(body)
     elif action == 'userProvidesBuyOption':
@@ -41,6 +43,8 @@ def dialogflow():
             [body['queryResult']['fulfillmentText']])
 
     response = response_data['fulfillmentMessages'][0]['text']['text'][0]
+
+    print(response)
 
     add_conversation(query, response, session_id)
 
