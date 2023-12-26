@@ -1,7 +1,12 @@
 import sqlite3
 from datetime import datetime
+import tempfile
+import os
 
-conn = sqlite3.connect("test.db")
+DB_FILE_PATH = os.path.join(tempfile.gettempdir(),
+                            'car-sales-assistant', 'test.db')
+
+conn = sqlite3.connect(DB_FILE_PATH)
 
 conn.execute('''CREATE TABLE IF NOT EXISTS CHATHISTORY
          (ID INTEGER PRIMARY KEY AUTOINCREMENT,
