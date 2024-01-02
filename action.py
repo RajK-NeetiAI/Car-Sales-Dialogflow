@@ -2,6 +2,16 @@ from utils import *
 from database import *
 
 
+def handle_use_openai(body: dict) -> dict:
+    query = body['queryResult']['fulfillmentMessages'][0]['text']['text'][0]
+    response = get_openai_response(
+        f'''Please format the following sentence in a polite tone. \
+SENTENCE: {query}'''
+    )
+
+    return format_dialogflow_response([response])
+
+
 def handle_buy_a_car(body: dict) -> dict:
     try:
         all_required_params_present = body['queryResult']['allRequiredParamsPresent']

@@ -24,7 +24,9 @@ def dialogflow():
 
     print(f'{action} -> {query}')
 
-    if action == 'buyACar':
+    if action == 'useOpenai':
+        response_data = handle_use_openai(body)
+    elif action == 'buyACar':
         response_data = handle_buy_a_car(body)
     elif action == 'userProvidesBuyOption':
         response_data = handle_user_provides_buy_option(body)
