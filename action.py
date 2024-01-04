@@ -4,10 +4,8 @@ from database import *
 
 def handle_use_openai(body: dict) -> dict:
     query = body['queryResult']['fulfillmentMessages'][0]['text']['text'][0]
-    response = get_openai_response(
-        f'''Please format the following sentence in a polite tone. \
-SENTENCE: {query}'''
-    )
+    response = get_openai_response(f'''Please format the following sentence in a polite tone. \
+SENTENCE: {query}''')
 
     return format_dialogflow_response([response])
 
@@ -26,29 +24,48 @@ def handle_buy_a_car(body: dict) -> dict:
         [ ] add them to the session parameters
         '''
         parameters = get_dialogflow_parameters(body, 'buy-session')
-        print(parameters)
 
-        response = 'Here are some suggestions based on your inputs. You can say option one.'
+        brand = parameters['car_company']
+        model = None
+        fuel_type = None
 
-        output_contexts = []
-        output_contexts.append(
-            {
-                'name': f'{session}/contexts/buy-session',
-                'lifespanCount': 50,
-                'parameters': {
-                    'car_options': []
+        if parameters['car_model'] != '':
+            model = parameters['car_model']
+        if parameters['car_variant'] != '':
+            fuel_type = parameters['car_variant']
+
+        car_options = get_car_information(brand, model, fuel_type)
+
+        if len(car_options) == 0:
+            output_contexts = []
+            response = get_openai_response(f'''Consider yourself as a car sales assistant, user is \
+searching for card beand {brand} but unfortunately we don't have that in our listing, politely say \
+that we don't have this car and Ask a follow up question to look for another car.''')
+        else:
+            response = get_openai_response(f'Consider yourself as a car sales assistant, format the \
+following car options in a informative tone. Car options: {car_options} Ask a follow up question to \
+select an option.')
+
+            output_contexts = []
+            output_contexts.append(
+                {
+                    'name': f'{session}/contexts/buy-session',
+                    'lifespanCount': 50,
+                    'parameters': {
+                        'car_options': []
+                    }
                 }
-            }
-        )
-        output_contexts.append(
-            {
-                'name': f'{session}/contexts/await-buy-option',
-                'lifespanCount': 1
-            }
-        )
+            )
+            output_contexts.append(
+                {
+                    'name': f'{session}/contexts/await-buy-option',
+                    'lifespanCount': 1
+                }
+            )
     else:
         output_contexts = []
-        response = body['queryResult']['fulfillmentText']
+        response = get_openai_response(f'''Please format the following sentence in a polite tone. \
+SENTENCE: {body['queryResult']['fulfillmentText']}''')
 
     return format_dialogflow_response([response], output_contexts)
 

@@ -1,3 +1,5 @@
+import threading
+
 from flask import Flask, jsonify, request
 
 from utils import format_dialogflow_response
@@ -48,7 +50,10 @@ def dialogflow():
 
     print(response)
 
-    add_conversation(query, response, session_id)
+    threading.Thread(
+        target=add_conversation,
+        args=(query, response, session_id)
+    ).start()
 
     return jsonify(response_data)
 

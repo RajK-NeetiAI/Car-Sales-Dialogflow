@@ -1,15 +1,11 @@
 import sqlite3
 from datetime import datetime
-import tempfile
-import os
 
-DB_DIR = os.path.join(tempfile.gettempdir(), 'car-sales-assistant')
+import requests
 
-os.makedirs(DB_DIR, exist_ok=True)
+import config
 
-DB_FILE_PATH = os.path.join(DB_DIR, 'test.db')
-
-conn = sqlite3.connect(DB_FILE_PATH)
+conn = sqlite3.connect('test.db')
 
 conn.execute('''CREATE TABLE IF NOT EXISTS CHATHISTORY
          (ID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -26,3 +22,36 @@ def add_conversation(query: str, response: str, session_id: str) -> None:
 VALUES ('{query}', '{response}', '{session_id}', '{created_at}');")
     conn.commit()
     print('Conversation added.')
+
+    return None
+
+
+def get_car_information(brand: str, model: str = None, fuel_type: str = None) -> dict:
+    payload = {'brand': brand}
+    if model is not None:
+        payload.update({'model': model})
+    if fuel_type is not None:
+        payload.update({'fuel_type': fuel_type})
+    try:
+        response = requests.post(
+            f'{config.BACKEND_URL}/api/get_filtered_channel_fast', json=payload)
+        response = response.json()
+        car_data = []
+        count = 3
+        if response['ok']:
+            for k, v in response['data'].items():
+                if count == 0:
+                    break
+                count -= 1
+                car_data.append({
+                    'brandv': v['brand'],
+                    'model': v['model'],
+                    'price': v['price'],
+                    'year': v['year'],
+                    'mileage': v['mileage'],
+                    'transmission': v['transmission']
+                })
+
+        return car_data
+    except:
+        return []
