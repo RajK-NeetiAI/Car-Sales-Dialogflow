@@ -1,0 +1,41 @@
+{
+    "car_brand_found": {
+        "description": "Use this when the car brand found.",
+        "variables": [
+            "{brand}"
+        ],
+        "responses": [
+            "Are you looking for a specific model of the {brand} company?",
+            "We have different models of the {brand} company, are you looking for a specific model?"
+        ]
+    },
+    "car_model_found": {
+        "description": "Use this when the car model found.",
+        "variables": [
+            "{brand}",
+            "{model}"
+        ],
+        "responses": [
+            "We have found cars from {brand} for {model} model, do you want me to send the details over SMS and through your WhatsApp? Or do you want me to list them here?"
+        ]
+    },
+    "send_car_data_whatsapp": {
+        "description": "Use this when user wants to receive the car data over WhatsApp.",
+        "variables": [],
+        "responses": [
+            "We will send you the car data over the WhatsApp, to see other models that suits your requirements, visit our website. Thank you."
+        ]
+    },
+    "do_not_car_data_whatsapp": {
+        "description": "Use this when user does not want to receive the car data over WhatsApp.",
+        "variables": [
+            "{brand}",
+            "{model}",
+            "{price}",
+            "{year}"
+        ],
+        "responses": [
+            "{brand}, {model}, at {price} EURO, purchased in the year of {year}."
+        ]
+    }
+}

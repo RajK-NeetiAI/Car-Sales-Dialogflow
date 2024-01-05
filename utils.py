@@ -1,3 +1,7 @@
+import re
+import json
+import random
+
 import requests
 from tenacity import retry, wait_random_exponential, stop_after_attempt
 
@@ -42,7 +46,6 @@ def chat_completion_request(messages, model=config.GPT_MODEL):
         'Authorization': f'Bearer {config.OPENAI_API_KEY}',
     }
     json_data = {'model': model, 'messages': messages}
-
     try:
         response = requests.post(
             'https://api.openai.com/v1/chat/completions',
@@ -64,3 +67,25 @@ def get_openai_response(instruction: str) -> str:
     response = chat_completion_request(messages)
 
     return response
+
+
+def replace_values(input_string: str, replacement_values: dict) -> str:
+    pattern = r'\{.*?\}'
+
+    def replace_match(match: re.Match):
+        return replacement_values.get(match.group(0), match.group(0))
+    output_string = re.sub(pattern, replace_match, input_string)
+
+    return output_string
+
+
+def get_response_from_responses_json(key_name: str, replacement_values: dict = None) -> str:
+    with open('responses.json', 'r') as file:
+        data = json.loads(file.read())
+    response_data = data[key_name]
+    if replacement_values is not None:
+        response = replace_values(random.choice(
+            response_data['responses']), replacement_values)
+        return response
+    else:
+        return random.choice(response_data['responses'])

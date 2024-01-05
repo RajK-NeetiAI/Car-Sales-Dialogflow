@@ -1,5 +1,3 @@
-import threading
-
 from flask import Flask, jsonify, request
 
 from utils import format_dialogflow_response
@@ -26,22 +24,18 @@ def dialogflow():
 
     print(f'{action} -> {query}')
 
-    if action == 'useOpenai':
-        response_data = handle_use_openai(body)
+    if action == 'defaultWelcomeIntent':
+        response_data = handle_default_welcome_intent(body)
     elif action == 'buyACar':
         response_data = handle_buy_a_car(body)
-    elif action == 'userProvidesBuyOption':
-        response_data = handle_user_provides_buy_option(body)
-    elif action == 'confirmAction':
-        response_data = handle_confirm_action(body)
-    elif action == 'denyAction':
-        response_data = handle_deny_action(body)
-    elif action == 'userProvidesName':
-        response_data = handle_user_provides_name(body)
-    elif action == 'userProvidesMobile':
-        response_data = handle_user_provides_mobile(body)
-    elif action == 'sellACar':
-        response_data = handle_sell_a_car(body)
+    elif action == 'userProvidesModel':
+        response_data = handle_user_provides_model(body)
+    elif action == 'userConfirmsDetailsOverWhatsapp':
+        response_data = handle_user_confirms_details_over_whatsapp(body)
+    elif action == 'userDeniesDetailsOverWhatsapp':
+        response_data = handle_user_denies_details_over_whatsapp(body)
+    elif action == 'userDeniesModel':
+        response_data = handle_user_denies_model(body)
     else:
         response_data = format_dialogflow_response(
             [body['queryResult']['fulfillmentText']])
@@ -50,13 +44,6 @@ def dialogflow():
 
     print(response)
 
-    threading.Thread(
-        target=add_conversation,
-        args=(query, response, session_id)
-    ).start()
+    add_conversation(query, response, session_id)
 
     return jsonify(response_data)
-
-
-if __name__ == '__main__':
-    app.run(debug=True)

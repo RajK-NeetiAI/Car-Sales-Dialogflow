@@ -7,6 +7,6 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 * run the application
-```python
-python app.py
+```bash
+gunicorn run:app --bind 0.0.0.0:5000 --reload 
 ```

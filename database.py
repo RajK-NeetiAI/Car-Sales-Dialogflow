@@ -26,8 +26,10 @@ VALUES ('{query}', '{response}', '{session_id}', '{created_at}');")
     return None
 
 
-def get_car_information(brand: str, model: str = None, fuel_type: str = None) -> dict:
-    payload = {'brand': brand}
+def get_car_information(brand: str = None, model: str = None, fuel_type: str = None) -> dict:
+    payload = {}
+    if brand is not None:
+        payload.update({'brand': brand})
     if model is not None:
         payload.update({'model': model})
     if fuel_type is not None:
@@ -39,12 +41,12 @@ def get_car_information(brand: str, model: str = None, fuel_type: str = None) ->
         car_data = []
         count = 3
         if response['ok']:
-            for k, v in response['data'].items():
+            for _, v in response['data'].items():
                 if count == 0:
                     break
                 count -= 1
                 car_data.append({
-                    'brandv': v['brand'],
+                    'brand': v['brand'],
                     'model': v['model'],
                     'price': v['price'],
                     'year': v['year'],
@@ -53,5 +55,29 @@ def get_car_information(brand: str, model: str = None, fuel_type: str = None) ->
                 })
 
         return car_data
+    except:
+        return []
+
+
+def get_brand_information() -> dict:
+    payload = {}
+    try:
+        response = requests.get(
+            f'{config.BACKEND_URL}/api/autoscout_brands', json=payload)
+        brand_data = response.json()
+
+        return brand_data
+    except:
+        return []
+
+
+def get_model_information(brand: str) -> dict:
+    payload = {}
+    try:
+        response = requests.get(
+            f'{config.BACKEND_URL}/api/autoscout_models?brand={brand}', json=payload)
+        model_data = dict(response.json())
+        model_data = list(model_data.keys())
+        return model_data
     except:
         return []
