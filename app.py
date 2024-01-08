@@ -1,4 +1,6 @@
-from flask import Flask, jsonify, request
+import os
+
+from flask import Flask, jsonify, render_template, request, send_from_directory
 
 from utils import format_dialogflow_response
 from action import *
@@ -6,9 +8,15 @@ from action import *
 app = Flask(__name__)
 
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='images/favicon.png')
+
+
 @app.route("/")
 def home():
-    return jsonify({'message': 'Application is running.'})
+    return render_template("index.html")
 
 
 @app.route('/dialogflow', methods=['POST'])
@@ -40,7 +48,7 @@ def dialogflow():
         response_data = format_dialogflow_response(
             [body['queryResult']['fulfillmentText']])
 
-    response = response_data['fulfillmentMessages'][0]['text']['text'][0]
+    response = response_data['fulfillmentText']
 
     print(response)
 

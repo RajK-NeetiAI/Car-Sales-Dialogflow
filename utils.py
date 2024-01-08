@@ -8,16 +8,9 @@ from tenacity import retry, wait_random_exponential, stop_after_attempt
 import config
 
 
-def format_dialogflow_response(messages: list[str], output_contexts: list[dict] = []) -> dict:
+def format_dialogflow_response(message: str, output_contexts: list[dict] = []) -> dict:
     response_data = {}
-    response_data['fulfillmentMessages'] = []
-    response_data['fulfillmentMessages'].append(
-        {
-            'text': {
-                'text': messages
-            }
-        }
-    )
+    response_data['fulfillmentText'] = message
     if (len(output_contexts) > 0):
         response_data['outputContexts'] = output_contexts
     return response_data

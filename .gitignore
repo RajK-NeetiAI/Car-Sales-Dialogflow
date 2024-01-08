@@ -2,3 +2,6 @@ __pycache__/
 venv/
 .env
 IVR Project Flow.pptx
+get_filtered_channel_fast.md
+test.db
+

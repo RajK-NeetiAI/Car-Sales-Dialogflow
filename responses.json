@@ -1,6 +1,6 @@
 {
-    "car_brand_found": {
-        "description": "Use this when the car brand found.",
+    "car_brand_found_model_not_found": {
+        "description": "Use this when the car brand found but no model found.",
         "variables": [
             "{brand}"
         ],
@@ -10,13 +10,14 @@
         ]
     },
     "car_model_found": {
-        "description": "Use this when the car model found.",
+        "description": "Use this when the car brand and model found.",
         "variables": [
             "{brand}",
-            "{model}"
+            "{model}",
+            "{number}"
         ],
         "responses": [
-            "We have found cars from {brand} for {model} model, do you want me to send the details over SMS and through your WhatsApp? Or do you want me to list them here?"
+            "We have found {number} of cars from {brand} for {model} model, do you want me to send the details over SMS and through your WhatsApp? Or do you want me to list them here?"
         ]
     },
     "send_car_data_whatsapp": {
@@ -36,6 +37,30 @@
         ],
         "responses": [
             "{brand}, {model}, at {price} EURO, purchased in the year of {year}."
+        ]
+    },
+    "car_found_user_denies_model": {
+        "description": "Use this when the car found and user denies providing model.",
+        "variables": [
+            "{brand}",
+            "{number}"
+        ],
+        "responses": [
+            "We have found {number} of cars from {brand}, do you want me to send the details over SMS and through your WhatsApp? Or do you want me to list them here?"
+        ]
+    },
+    "car_not_in_query": {
+        "description": "Use this when the car not found.",
+        "variables": [],
+        "responses": [
+            "We have different car listing, are you looking for a specific car brand?"
+        ]
+    },
+    "car_data_empty": {
+        "description": "Use this when the car data is empty.",
+        "variables": [],
+        "responses": [
+            "We have noted your request for the car, to see other models that suits your requirements, visit our website. Thank you."
         ]
     }
 }
