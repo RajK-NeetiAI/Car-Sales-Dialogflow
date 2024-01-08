@@ -213,6 +213,8 @@ def handle_user_confirms_details_over_whatsapp(body: dict) -> dict:
     if flow == 'BUY':
         response = get_response_from_responses_json('send_car_data_whatsapp')
     elif flow == 'SELL':
+        brand = parameters['brand']
+        model = parameters['model']
         response = get_response_from_responses_json(
             'sell_send_car_data_whatsapp_or_no', {"{brand}": brand, "{model}": model})
     else:
@@ -240,6 +242,8 @@ def handle_user_denies_details_over_whatsapp(body: dict) -> dict:
                 response += '\n'
             response += 'Thank you for using our service, to see other models that suits your requirements, visit our website.'
     elif flow == 'SELL':
+        brand = parameters['brand']
+        model = parameters['model']
         response = get_response_from_responses_json(
             'sell_send_car_data_whatsapp_or_no', {"{brand}": brand, "{model}": model})
     else:
