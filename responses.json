@@ -62,5 +62,73 @@
         "responses": [
             "We have noted your request for the car, to see other models that suits your requirements, visit our website. Thank you."
         ]
+    },
+    "sell_car_not_in_query": {
+        "description": "Use this when the car not found sell flow.",
+        "variables": [],
+        "responses": [
+            "We can help you sell your car, which car brand you have?"
+        ]
+    },
+    "sell_car_found_model_not_found": {
+        "description": "Use this when the car found but model not found in sell flow.",
+        "variables": [
+            "{brand}"
+        ],
+        "responses": [
+            "We can help you sell your {brand} car, Please specify the model you have."
+        ]
+    },
+    "sell_car_model_found": {
+        "description": "Use this when the car brand and model found in sell flow.",
+        "variables": [
+            "{brand}",
+            "{model}"
+        ],
+        "responses": [
+            "We have noted that you are interested to sell your {brand} {model} car, our representative will soon reach you regarding this, Are you interested to get updates regarding this on WhatsApp or SMS?"
+        ]
+    },
+    "sell_send_car_data_whatsapp_or_no": {
+        "description": "Use this when the car brand and model found in sell flow and user either wants to send on WhatsApp or not.",
+        "variables": [
+            "{brand}",
+            "{model}"
+        ],
+        "responses": [
+            "We have noted that you are interested to sell your {brand} {model} car, our representative will soon reach you regarding this, Are you interested to get updates regarding this on WhatsApp or SMS?"
+        ]
+    },
+    "order_number_not_found": {
+        "description": "Use this when the order number not found.",
+        "variables": [],
+        "responses": [
+            "Please can you provide your order number.",
+            "I will need the order number to provide the information."
+        ]
+    },
+    "order_number_found": {
+        "description": "Use this when the order number found.",
+        "variables": [
+            "{order_number}",
+            "{more_information}"
+        ],
+        "responses": [
+            "We have found your order number {order_number}, here is the more information: {more_information}. Do you want to get updates on Whatsapp or SMS?"
+        ]
+    },
+    "order_number_not_known": {
+        "description": "Use this when the user don't know the order number.",
+        "variables": [],
+        "responses": [
+            "We need order number to get the current status of your order. You can check your order status on our website too, do you want to get more details over whatsapp or SMS?"
+        ]
+    },
+    "order_send_or_not_whatsapp": {
+        "description": "Use this when the user wants or not to send the details over whatsapp.",
+        "variables": [],
+        "responses": [
+            "Thank you for calling Aste Automobili, have a good day!"
+        ]
     }
 }

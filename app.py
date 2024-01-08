@@ -44,6 +44,12 @@ def dialogflow():
         response_data = handle_user_denies_details_over_whatsapp(body)
     elif action == 'userDeniesModel':
         response_data = handle_user_denies_model(body)
+    elif action == 'sellACar':
+        response_data = handle_sell_a_car(body)
+    elif action == 'orderStatus':
+        response_data = handle_order_status(body)
+    elif action == 'userProvidesOrderNumber':
+        response_data = handle_user_provides_order_number(body)
     else:
         response_data = format_dialogflow_response(
             [body['queryResult']['fulfillmentText']])
