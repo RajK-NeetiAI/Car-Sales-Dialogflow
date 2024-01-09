@@ -50,6 +50,8 @@ def dialogflow():
         response_data = handle_order_status(body)
     elif action == 'userProvidesOrderNumber':
         response_data = handle_user_provides_order_number(body)
+    elif action == 'userProvidesBrand':
+        response_data = handle_user_provides_brand(body)
     else:
         response_data = format_dialogflow_response(
             [body['queryResult']['fulfillmentText']])

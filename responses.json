@@ -17,7 +17,7 @@
             "{number}"
         ],
         "responses": [
-            "We have found {number} of cars from {brand} for {model} model, do you want me to send the details over SMS and through your WhatsApp? Or do you want me to list them here?"
+            "We have found {number} cars from {brand} for {model} model, do you want me to send the details over SMS and through your WhatsApp? Or do you want me to list them here?"
         ]
     },
     "send_car_data_whatsapp": {
@@ -46,7 +46,7 @@
             "{number}"
         ],
         "responses": [
-            "We have found {number} of cars from {brand}, do you want me to send the details over SMS and through your WhatsApp? Or do you want me to list them here?"
+            "We have found {number} cars from {brand}, do you want me to send the details over SMS and through your WhatsApp? Or do you want me to list them here?"
         ]
     },
     "car_not_in_query": {

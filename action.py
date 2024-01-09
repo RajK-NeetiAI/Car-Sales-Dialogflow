@@ -122,7 +122,7 @@ def handle_buy_a_car(body: dict) -> dict:
                 }
             )
             response = get_response_from_responses_json(
-                'car_model_found', {"{brand}": brand, "{model}": model, "{number}": len(car_data)})
+                'car_model_found', {"{brand}": brand, "{model}": model, "{number}": str(len(car_data))})
 
     return format_dialogflow_response(response, output_contexts)
 
@@ -145,11 +145,11 @@ def handle_user_provides_model(body: dict) -> dict:
             if processed[1] > match_percentage:
                 match_percentage = processed[1]
                 model = str(processed[0])
-    processed = process.extractOne(parameters['car_model'], model_data)
     '''Need to do a sanity check here, in case the model is not extracted, we need to say
     sorry, we don't have the model, we can suggest some cars
     '''
     try:
+        processed = process.extractOne(parameters['car_model'], model_data)
         model = str(str(processed[0]))
     except:
         pass
@@ -171,8 +171,14 @@ def handle_user_provides_model(body: dict) -> dict:
         }
     )
     if flow == 'BUY':
-        response = get_response_from_responses_json(
-            'car_model_found', {"{brand}": brand, "{model}": model})
+        if model == None:
+            car_data = get_car_information(brand, model)
+            response = get_response_from_responses_json(
+                'car_found_user_denies_model', {"{brand}": brand, "{number}": str(len(car_data))})
+        else:
+            car_data = get_car_information(brand, model)
+            response = get_response_from_responses_json(
+                'car_model_found', {"{brand}": brand, "{model}": model, "{number}": str(len(car_data))})
     else:
         if model == None:
             model = ''
@@ -318,7 +324,7 @@ def handle_sell_a_car(body: dict) -> dict:
         output_contexts = []
         output_contexts.append(
             {
-                'name': f'{session}/contexts/await-car-brand-sell',
+                'name': f'{session}/contexts/await-car-brand',
                 'lifespanCount': 1
             }
         )
@@ -439,3 +445,7 @@ def handle_user_provides_order_number(body: dict) -> dict:
             'order_number_found', {"{order_number}": str(order_number), "{more_information}": more_information})
 
     return format_dialogflow_response(response, output_contexts)
+
+
+def handle_user_provides_brand(body: dict) -> dict:
+    pass
