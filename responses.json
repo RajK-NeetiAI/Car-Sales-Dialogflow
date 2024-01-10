@@ -79,6 +79,15 @@
             "We can help you sell your {brand} car, Please specify the model you have."
         ]
     },
+    "sell_car_user_denies_model": {
+        "description": "Use this when the car brand user denies model in sell flow.",
+        "variables": [
+            "{brand}"
+        ],
+        "responses": [
+            "We have noted that you are interested to sell your {brand} car, our representative will soon reach you regarding this, Are you interested to get updates regarding this on WhatsApp or SMS?"
+        ]
+    },
     "sell_car_model_found": {
         "description": "Use this when the car brand and model found in sell flow.",
         "variables": [
@@ -96,7 +105,7 @@
             "{model}"
         ],
         "responses": [
-            "We have noted that you are interested to sell your {brand} {model} car, our representative will soon reach you regarding this, Are you interested to get updates regarding this on WhatsApp or SMS?"
+            "Thank you for calling Aste Automobili, have a good day !"
         ]
     },
     "order_number_not_found": {
@@ -129,6 +138,35 @@
         "variables": [],
         "responses": [
             "Thank you for calling Aste Automobili, have a good day!"
+        ]
+    },
+    "car_model_found_no_car_db": {
+        "description": "Use this when the car and model found but there are no listings.",
+        "variables": [
+            "{brand}",
+            "{model}"
+        ],
+        "responses": [
+            "We have no listing of the {brand} {model} car at this time, to see other models that suits your requirements, visit our website. Thank you."
+        ]
+    },
+    "car_found_no_model_found_no_car_db": {
+        "description": "Use this when the car and model found but there are no listings.",
+        "variables": [
+            "{brand}"
+        ],
+        "responses": [
+            "We have no listing of the {brand} car at this time, to see other models that suits your requirements, visit our website. Thank you."
+        ]
+    },
+    "ask_manufacturing_year": {
+        "description": "Use this when asking for the manufacturing year.",
+        "variables": [
+            "{brand}"
+        ],
+        "responses": [
+            "Please provide the manufacturing year of your {brand} car.",
+            "What is the manufacturing year of your {brand} car?"
         ]
     }
 }

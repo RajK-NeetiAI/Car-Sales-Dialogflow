@@ -10,8 +10,8 @@ app = Flask(__name__)
 
 @app.route('/favicon.ico')
 def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicon.ico', mimetype='images/favicon.png')
+    return send_from_directory(os.path.join(app.root_path, 'images'),
+                               'favicon.png', mimetype='images/png')
 
 
 @app.route("/")
@@ -52,6 +52,8 @@ def dialogflow():
         response_data = handle_user_provides_order_number(body)
     elif action == 'userProvidesBrand':
         response_data = handle_user_provides_brand(body)
+    elif action == 'userProvidesPurchaseYear':
+        response_data = handle_user_provides_purchase_year(body)
     else:
         response_data = format_dialogflow_response(
             [body['queryResult']['fulfillmentText']])
@@ -60,6 +62,6 @@ def dialogflow():
 
     print(response)
 
-    add_conversation(query, response, session_id)
+    # add_conversation(str(query), str(response), str(session_id))
 
     return jsonify(response_data)
