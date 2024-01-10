@@ -210,6 +210,7 @@ def handle_user_confirms_details_over_whatsapp(body: dict) -> dict:
     flow = parameters['flow']
     '''User mobile number
     '''
+    print('User information')
     print(body['originalDetectIntentRequest']['payload'])
     '''User wants to receive the details over WhatsApp
     '''
